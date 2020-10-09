@@ -28,9 +28,14 @@ class Web_scraper():
 		self.fields = fields			#Fealds to expect in responce json
 		self.fp = None					#File pinter to file
 		self.new_file()					#Set file self.fp
+		self.day = datetime.now().day
 		self.schedule = Schedule(self.do, *time)	#Make a new scedule, start with self.schedule.start()
 
 	def do(self):
+		#Test if it is a new day
+		if (self.day != datetime.now().day):
+			self.new_day()
+			self.day = datetime.now().day
 
 		resp = self.request()
 
@@ -46,6 +51,8 @@ class Web_scraper():
 					print("exceptin in do loop:\n", sys.exc_info()[0])
 		except TypeError as e:
 			print("Response was not json !!!\n", e)
+		
+		print("Request and insertion done. -", datetime.now())
 
 	#Request function
 	def request(self):
@@ -89,6 +96,7 @@ class Web_scraper():
 		self.fp.write("\n")
 
 	def new_day(self):
+		print("New day starting -", datetime.now())
 		self.close_file()
 		self.new_file()
 
@@ -99,7 +107,8 @@ def main():
 	fields = ("Dato", "Klokkeslett", "Sted", "Latitude", "Longitude", "Antall_ledige_plasser")
 	data_dir = "./temp_data"
 	scraper = Web_scraper(url, fields, scedule, data_dir)
-	scraper.do()
+	#scraper.do()
+	scraper.schedule.start()
 
 if __name__ == "__main__":
 	main()
