@@ -4,15 +4,13 @@
 	- Created: 13.10.2020
 """
 
-
 import requests
 from datetime import date, datetime, timedelta
 from scedule import Schedule
 import sys
 
-
 """
-	-
+	- A weather scraper using a sceduler
 """
 class Weather_scraper():
 	def __init__(self, time, file_name = "weather", data_dir = "."):
@@ -33,7 +31,7 @@ class Weather_scraper():
 		self.data_dir = data_dir
 
 	"""
-		-
+		- Parse the right url based on weather staton and elements wanted
 	"""
 	def weather_url(self, now, source, elements):
 
@@ -47,7 +45,8 @@ class Weather_scraper():
 		return f"{url_base}{url_source}{url_time}{url_elements}"
 
 	"""
-		-
+		- Get/request the data
+		- Return as json
 	"""
 	def weather_get(self, datetime, source, elements):
 		url = self.weather_url(datetime, source, elements)
@@ -64,14 +63,13 @@ class Weather_scraper():
 		return resp.json()
 
 	"""
-		-
+		- Get the todays date
 	"""
 	def weather_time(self):
 		return datetime.now().date()
-		#return datetime.fromisoformat(f"{t.year}-{t.month}-{t.day}")
 
 	"""
-		-
+		- Open a new file pointer
 	"""
 	def weather_new_csv(self):
 		fp = open(f"{self.data_dir}/{self.file_name}-{datetime.now().date()-timedelta(days=1)}.csv", "w+")
@@ -85,7 +83,7 @@ class Weather_scraper():
 		self.fp.close()
 
 	"""
-		-
+		- Acctually write to file
 	"""
 	def weather_store_observations(self, h):
 		for o in h["observations"]:
@@ -98,7 +96,9 @@ class Weather_scraper():
 			self.fp.write("\n")
 
 	"""
-		-
+		- Function to call when an update is desiered
+		- note: ment to to not be called more then once a day (will overwrite file)
+		- create a new file - do request - insert with feald filter
 	"""
 	def weather_store(self):
 		#New file every day
