@@ -5,6 +5,7 @@
 
 from datetime import date, datetime, timedelta
 import time
+import sys
 
 class Schedule():
 	def __init__(self, func, year = None, month = None, day = None, hour = None, minut = None, second = None):
@@ -57,7 +58,11 @@ class Schedule():
 
 	def schedule(self):
 		time.sleep(self.time_sleep())
-		self.func()
+		try:
+			self.func()
+		except:
+			print("Except in provided function not handled...\nError:", sys.exc_info()[0])
+			
 		return True
 
 	def loop(self):
