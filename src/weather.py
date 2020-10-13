@@ -9,6 +9,9 @@ from datetime import date, datetime, timedelta
 from scedule import Schedule
 import sys
 
+#Suppress warning for not verifying ssl in request
+requests.packages.urllib3.disable_warnings() 
+
 """
 	- A weather scraper using a sceduler
 """
@@ -50,7 +53,7 @@ class Weather_scraper():
 	"""
 	def weather_get(self, datetime, source, elements):
 		url = self.weather_url(datetime, source, elements)
-		print(url)
+		#print(url)
 		try:
 			resp = requests.get(url=url, timeout=10, verify=False)
 		except requests.exceptions.Timeout:
@@ -105,7 +108,7 @@ class Weather_scraper():
 		self.fp = self.weather_new_csv()
 
 		time = self.weather_time()
-		print(time)
+		#print(time)
 		raw_by = self.weather_get(time, self.source_stavanger_by, self.stavanger_by_elemebts)
 		raw_sola = self.weather_get(time, self.source_sola, self.sola_elements)
 
@@ -118,7 +121,16 @@ class Weather_scraper():
 				self.weather_store_observations(h_by)
 				self.weather_store_observations(h_sola)
 		except:
-			print("exception in do weather_store:\n", sys.exc_info()[0])
+			print("exception in weather_store:\n", sys.exc_info()[0])
 
 		self.weather_close_file()
 		print(f"Weather request and insertion. done: {datetime.now()}, next time: {self.schedule.next_time()}")
+
+def unit_test():
+	scedule = (None, None, None, None, None, None)
+	w = Weather_scraper(scedule, "weather_unit-test")
+	w.weather_store()
+
+
+if __name__ == "__main__":
+	unit_test()
