@@ -11,11 +11,11 @@ class Schedule():
 		self.start_date = date.today().strftime("%d-%m-%Y") 	#date when started
 		self.func = func
 
-		self.second = second if second else 60 if minut else -1	# condition for the secound
-		self.minut = minut if minut else 60 if hour else -1	# condition for the minut
-		self.hour = hour if hour else 24 if day else -1		# condition for the hour
+		self.second = second if second else 60				# condition for the secound
+		self.minut = minut if minut else 60 if hour or day or month or year else -1	# condition for the minut
+		self.hour = hour if hour else 24 if day or month or year else -1		# condition for the hour
 		
-		self.day = day if day else 32 if month else -1		# List of days to execute (if None every day)
+		self.day = day if day else 32 if month or year else -1		# List of days to execute (if None every day)
 		self.month = month if month else 13 if year else -1
 		self.year = year if year else -1
 
@@ -48,7 +48,8 @@ class Schedule():
 		if (not self.second and not self.minut and not self.hour):
 			raise AssertionError("Execution schedule not set!!!")
 
-		print("Starting web scraping every ...")
+		print(f"Starting schedule every ..., first is {self.next_time()}")
+
 		self.loop()
 
 	def stop(self):
