@@ -18,7 +18,7 @@ def start():
 	fields = ("Dato", "Klokkeslett", "Sted", "Latitude", "Longitude", "Antall_ledige_plasser")
 	parking_scr = Parking_scraper(url, fields, parking_scedule, data_dir)
 
-	Weather_scedule = (None, None, 1, None, None, None)
+	Weather_scedule = (None, None, 1, (5,), None, None)
 	Weather_scr = Weather_scraper(Weather_scedule, data_dir=data_dir)
 
 	print("Starting weather scraper")
