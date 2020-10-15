@@ -75,7 +75,7 @@ class Weather_scraper():
 		- Open a new file pointer
 	"""
 	def weather_new_csv(self):
-		fp = open(f"{self.data_dir}/{self.file_name}-{datetime.now().date()-timedelta(days=1)}.csv", "w+")
+		fp = open(f"{self.data_dir}/{self.file_name}-{self.weather_time()-timedelta(days=1)}.csv", "w+")
 		fp.write("sourceId,referenceTime,elementId,value,unit\n")
 		return fp
 
@@ -114,7 +114,7 @@ class Weather_scraper():
 
 		#Loop over all hours
 		try:
-			for i in range(0,23):
+			for i in range(0,24):
 				h_by = raw_by["data"][i]
 				h_sola = raw_sola["data"][i]
 
@@ -122,9 +122,11 @@ class Weather_scraper():
 				self.weather_store_observations(h_sola)
 		except:
 			print("exception in weather_store:\n", sys.exc_info()[0])
+			
 
 		self.weather_close_file()
 		print(f"Weather request and insertion. done: {datetime.now()}, next time: {self.schedule.next_time()}")
+
 
 def unit_test():
 	scedule = (None, None, None, None, None, None)
