@@ -20,8 +20,6 @@ class Schedule():
 		self.month = month if month else 13 if year else -1
 		self.year = year if year else -1
 
-		self.init = True
-
 		self.all = ((self.second, "second", 60), (self.minut, "minute", 60), (self.hour, "hour", 24), (self.day, "day", 32), (self.month, "month", 13), (self.year, "year", 5000))
 
 	def time_sleep(self):
@@ -43,12 +41,9 @@ class Schedule():
 		for entry in self.all:
 			if isinstance(entry[0], tuple):
 				n, con = self.next_in_tuple(entry[0], entry[1])
+				t = t.replace(**{entry[1]: n})
 				if con:
-					t = t.replace(**{entry[1]: n})
-					if not self.init:
-						break
-				else:
-					t = t.replace(second=n)
+					break
 			elif entry[0] > 0 and entry[0] < entry[2]:
 				if (entry[1] != "year" and entry[1] != "month"):
 					param_name = f"{entry[1]}s"
@@ -86,8 +81,7 @@ class Schedule():
 			self.func()
 		except:
 			print("Except in provided function not handled...\nError:", sys.exc_info()[0])
-		if self.init:
-			self.init = False
+			
 		return True
 
 	def loop(self):
