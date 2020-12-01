@@ -1,1 +1,6 @@
 __pycache__
+.Rproj.user
+.RData
+.Rhistory
+data/
+src/temp_data/
