@@ -5,9 +5,9 @@
 """
 
 from datetime import date, datetime, timedelta
-from scedule import Schedule
 import requests
 import sys
+import os
 
 """
 	- Web scraper
@@ -20,22 +20,22 @@ import sys
 	- Start with: self.schedule.start()
 """
 class Parking_scraper():
-	def __init__(self, url, fields, time, data_dir = ".", file_name = "parking"):
+	def __init__(self, url, fields, temp_dir = ".", perm_dir = ".", prefix = "parking"):
 		self.url = url 					#url to scrape
-		self.data_dir = data_dir		#directory to store data
-		self.file_name = file_name		#neme of storage files
+		self.temp_dir = temp_dir		#directory to temporarly store data
+		self.perm_dir = perm_dir		#directory to permanantly store data 
+		self.prefix = prefix			#neme of storage files
 		self.fields = fields			#Fealds to expect in responce json
 		self.fp = None					#File pinter to file
 		self.new_file()					#Set file self.fp
 		self.day = datetime.now().day
-		self.schedule = Schedule(self.do, *time)	#Make a new scedule, start with self.schedule.start()
 
 	def do(self):
 		#Test if it is a new day
 		if (self.day != datetime.now().day):
 			self.new_day()
-			self.day = datetime.now().day
 
+		#Do Request
 		resp = self.request()
 
 		if not resp: 
@@ -45,13 +45,12 @@ class Parking_scraper():
 		try:
 			for parking in resp:
 				try:
-					self.input_data(parking)
+					self.store_data(parking)
 				except:
 					print("exceptin in do loop:\n", sys.exc_info()[0])
 		except TypeError as e:
 			print("Response was not json !!!\n", e)
-		
-		print(f"Parking request and insertion. done: {datetime.now()}, next time: {self.schedule.next_time()}")
+			return
 
 	#Request function
 	def request(self):
@@ -69,7 +68,7 @@ class Parking_scraper():
 	#Input data in to the csv file
 	#Note:  raw must be dict with same field count and names
 	#Note2: This function does not catch exceptions, must be done by caller
-	def input_data(self, raw):
+	def store_data(self, raw):
 		for field in self.fields:
 			if field == self.fields[0]:
 				self.fp.write(raw[field])
@@ -77,13 +76,21 @@ class Parking_scraper():
 				self.fp.write(f",{raw[field]}")
 		self.fp.write("\n")
 
+	#Close file and make link to perm dir
 	def close_file(self):
 		#Close file pointer
 		self.fp.close()
+		name = self.fp.name.split("/")[-1]
+		try:
+			os.link(f"{self.fp.name}", f"{self.perm_dir}/{name}")
+			print(f"Successfully made hard link to file {name}")
+		except FileExistsError as e:
+			print(f"Unable to make link to file {name}", e)
 
+	#Open new file and add header
 	def new_file(self):
 		#Open new file pointer
-		self.fp = open(f"{self.data_dir}/{self.file_name}-{datetime.now().date()}.csv", "w+")
+		self.fp = open(f"{self.temp_dir}/{self.prefix}-{datetime.now().date()}.csv", "w+")
 
 		#Insert header fealds
 		for field in self.fields:
@@ -98,3 +105,4 @@ class Parking_scraper():
 		print("New day starting -", datetime.now())
 		self.close_file()
 		self.new_file()
+		self.day = datetime.now().day

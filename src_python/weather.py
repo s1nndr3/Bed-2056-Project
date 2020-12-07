@@ -13,13 +13,11 @@ import sys
 requests.packages.urllib3.disable_warnings() 
 
 """
-	- A weather scraper using a sceduler
+	- A weather scraper using a sceduler.
+	- Do not have it`s own sceduler.
 """
 class Weather_scraper():
-	def __init__(self, time, file_name = "weather", data_dir = "."):
-		#Make a new scedule, start with self.schedule.start()
-		self.schedule = Schedule(self.weather_store, *time)
-
+	def __init__(self, file_name = "weather", data_dir = "."):
 		#The fields we are interested in
 		self.observations_fields = ('elementId', 'value', 'unit')
 
@@ -37,7 +35,6 @@ class Weather_scraper():
 		- Parse the right url based on weather staton and elements wanted
 	"""
 	def weather_url(self, now, source, elements):
-
 		prev = now - timedelta(days=1)
 		
 		url_base = "https://rim.met.no/api/v1/observations"
@@ -123,9 +120,7 @@ class Weather_scraper():
 		except:
 			print("exception in weather_store:\n", sys.exc_info()[0])
 			
-
 		self.weather_close_file()
-		print(f"Weather request and insertion. done: {datetime.now()}, next time: {self.schedule.next_time()}")
 
 
 def unit_test():

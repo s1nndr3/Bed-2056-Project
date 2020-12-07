@@ -86,7 +86,7 @@ class Schedule():
 
 	def loop(self):
 		while(self.schedule()):
-			pass
+			print(f"Function \"{self.func.__name__}\" done: {datetime.now()}, next time: {self.next_time()}")
 
 class unit_test():
 	def __init__(self):

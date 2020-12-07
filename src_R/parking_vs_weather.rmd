@@ -1,0 +1,93 @@
+---
+title: "parking in stavanger"
+author: "Sindre Sønvisen"
+date: "10/18/2020"
+output: 
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE, comment=NA, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("wrangle_new.r")
+```
+
+# Introduction:
+<pre>
+  In this study we want to see if there is a difference in available parking spaces and the weather.
+</pre>
+
+# Data:
+<pre>
+  The weather data is collected from:
+    ...
+  The parking data is collected from:
+    ...
+</pre>
+
+# Hypothesis:
+<pre>
+  H0: There is no difference in available parking spaces and weather (μ ???  ). 
+  H1: The available parking spaces goes down in bad weather (μ  ??? ).
+</pre>
+
+```{r Standard, include=FALSE, comment=NA, message=FALSE}
+#avg <- df_main[,c("DateTime", "Jorenholmen")]
+```
+
+
+```{r Correlation, comment=NA, message=FALSE}
+grid.table( 
+  cor(
+  spread(df_parking, "Place", "Free_spaces") %>% 
+    filter(hour(DateTime) >= 8) %>%
+    filter(hour(DateTime) <= 18) %>% .[-c(1)], 
+  spread(df_weather, "Element", "Value") %>%
+    filter(hour(DateTime) >= 8) %>%
+    filter(hour(DateTime) <= 18) %>% .[-c(1,4)], 
+  use = "complete.obs", 
+  method = c("pearson"))
+)
+```
+
+#Linear regression
+
+```{r Regression, comment=NA, message=FALSE}
+df_main %>%
+  filter(hour(DateTime) >= 8) %>%
+  filter(hour(DateTime) <= 18) %>%
+  filter(Forum < 500) %>%
+  ggplot(., aes(x=`Air_temp degC`, y=Siddis)) +
+  geom_point() +
+  geom_smooth(method='lm', formula= y~x) +
+  #ylim(0, 550) +
+  ggtitle("test") +
+  ylab("Free_spaces") + xlab("Temp")
+
+df_main %>%
+  filter(hour(DateTime) >= 8) %>%
+  filter(hour(DateTime) <= 18) %>%
+  
+  ggplot(., aes(x=`Precipitation mm`, y=Siddis)) +
+  geom_point() +
+  geom_smooth(method='lm', formula= y~x) +
+  #ylim(0, 550) +
+  ggtitle("test") +
+  ylab("Free_spaces") + xlab("Precipitation")
+
+df_main %>%
+  filter(hour(DateTime) >= 8) %>%
+  filter(hour(DateTime) <= 18) %>%
+  
+  ggplot(., aes(x=`wind_speed m/s`, y=Siddis)) +
+  geom_point() +
+  geom_smooth(method='lm', formula= y~x) +
+  #ylim(0, 550) +
+  ggtitle("test") +
+  ylab("Free_spaces") + xlab("wind_speed")
+```
+
+#Time graph
+
+```{r Time, comment=NA, message=FALSE}
+```
