@@ -11,7 +11,7 @@ import os
 
 """
 	- Web scraper
-	- Only for use with json respince
+	- Only for use with json responce
 	- Requierd fealds:
 		- url: The url to take a get request from
 		- fields: tupe of the fealds in each json entry

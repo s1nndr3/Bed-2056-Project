@@ -1,5 +1,5 @@
 ---
-title: "parking in stavanger"
+title: "Do weather affect driving patterns?"
 author: "Sindre Sønvisen"
 date: "10/18/2020"
 output: 
@@ -20,17 +20,22 @@ library(leaflet) #Map
 
 # Introduction:
 <pre>
-  In this study we want to see if there is a difference in available parking spaces in different weather.
+  This project is about testing whether the weather has a say in the  
+  number of available parking spaces in Stavanger.
 </pre>
 
 # Data:
 <pre>
   The weather data is collected from:
-    https://klimaservicesenter.no/observations/
-    Temperature and Precipitation from station .. id:SN44640.
-    Wind information from station ... id:SN44560. (consider changing...)
+    Norwegian klima service senter:
+      https://klimaservicesenter.no/observations/
+    Temperature and Precipitation from station id:SN44640.
+    Wind information from station id:SN44560. (consider changing...)
   The parking data is collected from:
     https://open.stavanger.kommune.no/dataset/stavanger-parkering/
+    
+  More information on each parking lot:
+    https://stavanger-parkering.no/parkering/p-hus/
 </pre>
 
 # Hypothesis:
@@ -50,13 +55,14 @@ map3
 ```
 
 ## Correlation
+A schema of correlation between the parking lots and the different weather aspects.
 ```{r Correlation, comment=NA, message=FALSE, echo=FALSE, warning=FALSE}
 df_temp <- df_main %>% 
   filter(hour(DateTime) >= 8) %>%
   filter(hour(DateTime) <= 18) %>% .[-c(1)]
 grid.table(
     cor(
-      x=df_temp[,2:9], 
+      x=df_temp[,1:9], 
       y=df_temp[,c("Air_temp degC", "Precipitation mm", "wind_speed m/s")], 
       use = "complete.obs", 
       method = c("pearson")

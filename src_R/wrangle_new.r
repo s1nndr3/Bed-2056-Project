@@ -26,6 +26,7 @@ df_weather <- map_dfr(weather_files, func) %>% .[, c("referenceTime", "elementId
 names(df_parking) <- c("Date", "Time", "Place", "Free_spaces", "Lat", "Lon")
 names(df_weather) <- c("DateTime", "Element", "Value", "unit")
 
+# Set Lat and Lon to numeric
 df_parking <- df_parking %>% mutate(Lat = as.numeric(Lat)) %>% mutate(Lon = as.numeric(Lon))
 
 #List of all places
@@ -61,7 +62,6 @@ df_weather <- df_weather %>%
 #Remove duplicate rows
 df_parking <- unique(df_parking)
 
-
 #Calculate average of each hour
 df_parking <- df_parking %>%
   mutate(DateTime = floor_date(DateTime, "hour")) %>% 
@@ -78,8 +78,3 @@ df_weather <- df_weather %>%
 #Combine the data frames
 df_main <- left_join(spread(df_parking, "Place", "Free_spaces"), spread(df_weather, "Element", "Value"))
 
-#List of all places
-places <- unique(df_parking$Place)
-
-name <- "Air_temp degC"
-na.omit(df_main) %>% mutate(x = get(name))
