@@ -4,3 +4,5 @@ __pycache__
 .Rhistory
 data/
 src_python/temp_data/
+venv
+parking_vs_weather.html
