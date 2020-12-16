@@ -128,3 +128,37 @@ fig <- fig %>% layout(
     )
   )
 )
+
+
+# df_main %>%
+#   filter(hour(DateTime) >= 8) %>%
+#   filter(hour(DateTime) <= 18) %>%
+#   filter(Forum < 500) %>%
+#   ggplot(., aes(x=`Air_temp degC`, y=Siddis)) +
+#   geom_point() +
+#   geom_smooth(method='lm', formula= y~x) +
+#   #ylim(0, 550) +
+#   ggtitle("test") +
+#   ylab("Free_spaces") + xlab("Temp")
+# 
+# df_main %>%
+#   filter(hour(DateTime) >= 8) %>%
+#   filter(hour(DateTime) <= 18) %>%
+#   
+#   ggplot(., aes(x=`Precipitation mm`, y=Siddis)) +
+#   geom_point() +
+#   geom_smooth(method='lm', formula= y~x) +
+#   #ylim(0, 550) +
+#   ggtitle("test") +
+#   ylab("Free_spaces") + xlab("Precipitation")
+# 
+# df_main %>%
+#   filter(hour(DateTime) >= 8) %>%
+#   filter(hour(DateTime) <= 18) %>%
+#   
+#   ggplot(., aes(x=`wind_speed m/s`, y=Siddis)) +
+#   geom_point() +
+#   geom_smooth(method='lm', formula= y~x) +
+#   #ylim(0, 550) +
+#   ggtitle("test") +
+#   ylab("Free_spaces") + xlab("wind_speed")

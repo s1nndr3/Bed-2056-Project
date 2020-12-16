@@ -5,8 +5,8 @@ library(gridExtra)
 library(grid)
 
 #File location
-weather_data_loc = "../../data/weather" #Relative address
-parking_data_loc = "../../data/parking" #Relative address
+weather_data_loc = "../data/weather" #Relative address
+parking_data_loc = "../data/parking" #Relative address
 
 
 #Find file names (with path)
@@ -19,14 +19,20 @@ func <- function(file){
   df <- read_csv(file, col_types = cols(.default = "c")) 
   return(df)
 }
-df_parking <- map_dfr(parking_files, func) %>% .[, c("Dato", "Klokkeslett", "Sted", "Antall_ledige_plasser")]
+df_parking <- map_dfr(parking_files, func) %>% .[, c("Dato", "Klokkeslett", "Sted", "Antall_ledige_plasser", "Latitude", "Longitude")]
 df_weather <- map_dfr(weather_files, func) %>% .[, c("referenceTime", "elementId", "value", "unit")]
 
-
 #Rename
-names(df_parking) <- c("Date", "Time", "Place", "Free_spaces")
+names(df_parking) <- c("Date", "Time", "Place", "Free_spaces", "Lat", "Lon")
 names(df_weather) <- c("DateTime", "Element", "Value", "unit")
 
+# Set Lat and Lon to numeric
+df_parking <- df_parking %>% mutate(Lat = as.numeric(Lat)) %>% mutate(Lon = as.numeric(Lon))
+
+#List of all places
+places <- unique(df_parking$Place) 
+n_places <- length(places)
+loc_parking <- df_parking[1:n_places, c("Place", "Lat", "Lon")]
 
 #Set datetime
 df_parking <- df_parking %>% 
@@ -39,7 +45,10 @@ df_weather <- df_weather %>%
 
 #Modify "Antall_ledige_plasser"
 df_parking <- df_parking %>%
-  mutate(Free_spaces = ifelse(Free_spaces == "Fullt", "0", Free_spaces)) %>%
+  mutate(Free_spaces = ifelse(Free_spaces == "0", NA,  #Where there where 0,0 as value
+                              ifelse(Free_spaces == "Fullt", "0", Free_spaces)
+                              )
+        ) %>%
   mutate(Free_spaces = as.numeric(Free_spaces))
 
 #Modify "Element"
@@ -52,8 +61,6 @@ df_weather <- df_weather %>%
 
 #Remove duplicate rows
 df_parking <- unique(df_parking)
-#table(df_parking$DateTime)
-
 
 #Calculate average of each hour
 df_parking <- df_parking %>%
@@ -62,70 +69,12 @@ df_parking <- df_parking %>%
   summarise(Free_spaces = mean(Free_spaces)) %>% 
   mutate(Free_spaces = round(Free_spaces))
 
-#COmbine element and unit in to one column
+#Combine element and unit in to one column
 df_weather <- df_weather %>% 
   mutate(Element = paste(Element, unit, sep = " ")) %>%
   select(., -unit)
 
 #Combine/reshape elements in to one row
-#df_weather <- spread(df_weather, "Element", "Value")
-#df_parking <- spread(df_parking, "Place", "Free_spaces")
-
 #Combine the data frames
 df_main <- left_join(spread(df_parking, "Place", "Free_spaces"), spread(df_weather, "Element", "Value"))
-
-
-
-
-# round(mean(, na.rm=TRUE)))
-
-
-# df_parking %>% spread(., "Place", "Free_spaces") %>% .[,-(2:3)] %>%
-#   mutate_at(-1, ~ . / 100)# round(mean(, na.rm=TRUE)))
-# 
-# 
-# avg = mean(df_main$Jorenholmen) %>% round(.)
-# 
-# df_main[,c("Jorenholmen", "Air_temp degC")] %>% 
-#   mutate(devi = Jorenholmen - avg) #%>%
-#   #mutate(pro = Jorenholmen / avg) %>%
-#   ggplot(., aes(x=`Air_temp degC`, y = devi)) +
-#   geom_point()
-
-# grid.table(
-#   cor(
-#     spread(df_parking, "Place", "Free_spaces") %>%
-#       filter(hour(DateTime) >= 8) %>%
-#       filter(hour(DateTime) <= 18) %>% .[-1],
-#     spread(df_weather, "Element", "Value") %>%
-#       filter(hour(DateTime) >= 8) %>%
-#       filter(hour(DateTime) <= 18) %>% .[-1],
-#     use = "complete.obs",
-#     method = c("pearson")
-#   )     # "kendall", "spearman"))
-# )
-
-# plot_ly(df_main, x = ~DateTime) %>%
-#   add_lines(y = ~Free_spaces, name = "Free_spaces")
-# 
-# 
-# fig <- fig %>% add_lines(y = ~`Air_temp degC`, name = "Air_temp degC", visible = F)
-# fig <- fig %>% layout(
-#   updatemenus = list(
-#     list(
-#       y = 0.8,
-#       buttons = list(
-#         
-#         list(method = "restyle",
-#              args = list("line.color", "blue"),
-#              label = "Blue"),
-#         
-#         list(method = "restyle",
-#              args = list("line.color", "red"),
-#              label = "Red"))
-#     )
-#   )
-# )
-# 
-# 
 
