@@ -70,6 +70,14 @@ make_regression <- function(data, name){
                  label = "Valberget"),
             
             list(method = "restyle",
+                 args = list("visible", list(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)),
+                 label = "Only scatter points"),
+            
+            list(method = "restyle",
+                 args = list("visible", list(FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE)),
+                 label = "Only regression lines"),
+            
+            list(method = "restyle",
                  args = list("visible", list(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)),
                  label = "All")
           )

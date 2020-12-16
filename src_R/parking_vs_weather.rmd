@@ -55,28 +55,42 @@ map3
 ```
 
 ## Correlation
-A schema of correlation between the parking lots and the different weather aspects.
+A schema of correlation between the parking lots and the different weather aspects. We use data every day between 08:00 and 18:00.
+
 ```{r Correlation, comment=NA, message=FALSE, echo=FALSE, warning=FALSE}
 df_temp <- df_main %>% 
   filter(hour(DateTime) >= 8) %>%
-  filter(hour(DateTime) <= 18) %>% .[-c(1)]
+  filter(hour(DateTime) <= 18) %>% 
+  .[-c(1)]
 grid.table(
-    cor(
+  abs(
+    round(
+      cor(
       x=df_temp[,1:9], 
       y=df_temp[,c("Air_temp degC", "Precipitation mm", "wind_speed m/s")], 
       use = "complete.obs", 
       method = c("pearson")
-      )
+      ), 
+      2)
+  )
 )
 ```
 
+This does not paint a clear picture of a correlation. But if we say values over 0.3 is a week correlation we have at least one number above that (Siddis and Air temperature). To inspect further we do linear regression on the data.
+
 ## Linear regression
+Three interactive regression plots for respectively Air temprure, Precipitation and wind speed. Siddis is set as standard for the regression graphs because it shows the most promising values in the correlation table, but feel free to change and inspect the other parking lots as well. Note. Forum and Parketten have some problems/anomalies in its data (see time graphs bellow)
 
 ```{r Regression, comment=NA, message=FALSE, echo=FALSE, warning=FALSE}
-make_regression(df_main, "Air_temp degC")
-make_regression(df_main, "Precipitation mm")
-make_regression(df_main, "wind_speed m/s")
+# make_regression(data, value) is a function made specific for this data set, and is not intended as a genera function.
+df_temp2 <- df_main %>% filter(hour(DateTime) >= 8) %>%
+  filter(hour(DateTime) <= 18)
+df_temp2 %>% make_regression(., "Air_temp degC")
+df_temp2 %>% make_regression(., "Precipitation mm")
+df_temp2 %>%  make_regression(., "wind_speed m/s")
 ```
+
+As we can see the data for the air temperature do seam to go the oppose direction from what I expected. The available parking seam to go down in higher temperature (exept for Forum). For Precipitation and wind speed thay do not seam to follow tha same trend and som of them goes up and some goes down in higer/lower Precipitation and wind speed. This can chnage as time goes on and we collect more data. The weather unfortunately for this project seam to have bean fairly stable. To inspect even deeper a time plot for both the parking data and weather is plotted bellow.
 
 ## Time graphs
 ```{r Time_p, comment=NA, message=FALSE, echo=FALSE, warning=FALSE}
@@ -150,4 +164,15 @@ df_weather %>% filter(Element != "wind_direction degrees") %>% ungroup() %>%
 ```
 
 # Methods used:
-....
+## Collecting data
+I chose to use python 3 for the data collection because i was most familiar with it at the time when i started this project. Python is also a good language to use in this scenario since we are collecting from the web and errors can occur. The exception clause in python make it easy to collect these errors and make sure we do not have a crash if/when a unexpected error occurs.
+
+### Python code:
+#### sceduler:
+I made my own scheduler instead of using soothing lake cron in linux. This was manly because i was personally interested and i culd easely used cron job instead since it runs on a linux server, The only advantage is that no alteration is required to run in an other os.
+
+#### Web scrapers:
+
+## Data wrangling using r
+
+## Data presentation r-markdown/plotly
