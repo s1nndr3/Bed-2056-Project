@@ -1,0 +1,73 @@
+sourceId,referenceTime,elementId,value,unit
+SN44640:0,2020-11-22T00:00:00.000Z,air_temperature,7.7,degC
+SN44640:0,2020-11-22T00:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T00:00:00.000Z,wind_speed,12.5,m/s
+SN44640:0,2020-11-22T01:00:00.000Z,air_temperature,6.2,degC
+SN44640:0,2020-11-22T01:00:00.000Z,sum(precipitation_amount PT1H),0.7,mm
+SN44560:0,2020-11-22T01:00:00.000Z,wind_speed,12.6,m/s
+SN44640:0,2020-11-22T02:00:00.000Z,air_temperature,5.1,degC
+SN44640:0,2020-11-22T02:00:00.000Z,sum(precipitation_amount PT1H),0.8,mm
+SN44560:0,2020-11-22T02:00:00.000Z,wind_speed,12.2,m/s
+SN44640:0,2020-11-22T03:00:00.000Z,air_temperature,6,degC
+SN44640:0,2020-11-22T03:00:00.000Z,sum(precipitation_amount PT1H),1.4,mm
+SN44560:0,2020-11-22T03:00:00.000Z,wind_speed,12.4,m/s
+SN44640:0,2020-11-22T04:00:00.000Z,air_temperature,5.8,degC
+SN44640:0,2020-11-22T04:00:00.000Z,sum(precipitation_amount PT1H),1,mm
+SN44560:0,2020-11-22T04:00:00.000Z,wind_speed,12.4,m/s
+SN44640:0,2020-11-22T05:00:00.000Z,air_temperature,6.7,degC
+SN44640:0,2020-11-22T05:00:00.000Z,sum(precipitation_amount PT1H),0.2,mm
+SN44560:0,2020-11-22T05:00:00.000Z,wind_speed,13.7,m/s
+SN44640:0,2020-11-22T06:00:00.000Z,air_temperature,7.4,degC
+SN44640:0,2020-11-22T06:00:00.000Z,sum(precipitation_amount PT1H),0.2,mm
+SN44560:0,2020-11-22T06:00:00.000Z,wind_speed,12.1,m/s
+SN44640:0,2020-11-22T07:00:00.000Z,air_temperature,8.2,degC
+SN44640:0,2020-11-22T07:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T07:00:00.000Z,wind_speed,12.9,m/s
+SN44640:0,2020-11-22T08:00:00.000Z,air_temperature,7.3,degC
+SN44640:0,2020-11-22T08:00:00.000Z,sum(precipitation_amount PT1H),0.6,mm
+SN44560:0,2020-11-22T08:00:00.000Z,wind_speed,12.4,m/s
+SN44640:0,2020-11-22T09:00:00.000Z,air_temperature,8.5,degC
+SN44640:0,2020-11-22T09:00:00.000Z,sum(precipitation_amount PT1H),0.4,mm
+SN44560:0,2020-11-22T09:00:00.000Z,wind_speed,14.8,m/s
+SN44640:0,2020-11-22T10:00:00.000Z,air_temperature,8.4,degC
+SN44640:0,2020-11-22T10:00:00.000Z,sum(precipitation_amount PT1H),0.1,mm
+SN44560:0,2020-11-22T10:00:00.000Z,wind_speed,12.9,m/s
+SN44640:0,2020-11-22T11:00:00.000Z,air_temperature,8.9,degC
+SN44640:0,2020-11-22T11:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T11:00:00.000Z,wind_speed,12.6,m/s
+SN44640:0,2020-11-22T12:00:00.000Z,air_temperature,8.4,degC
+SN44640:0,2020-11-22T12:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T12:00:00.000Z,wind_speed,11.3,m/s
+SN44640:0,2020-11-22T13:00:00.000Z,air_temperature,8.5,degC
+SN44640:0,2020-11-22T13:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T13:00:00.000Z,wind_speed,10.2,m/s
+SN44640:0,2020-11-22T14:00:00.000Z,air_temperature,7.4,degC
+SN44640:0,2020-11-22T14:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T14:00:00.000Z,wind_speed,11.7,m/s
+SN44640:0,2020-11-22T15:00:00.000Z,air_temperature,7.8,degC
+SN44640:0,2020-11-22T15:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T15:00:00.000Z,wind_speed,10.5,m/s
+SN44640:0,2020-11-22T16:00:00.000Z,air_temperature,5.7,degC
+SN44640:0,2020-11-22T16:00:00.000Z,sum(precipitation_amount PT1H),2.4,mm
+SN44560:0,2020-11-22T16:00:00.000Z,wind_speed,9.7,m/s
+SN44640:0,2020-11-22T17:00:00.000Z,air_temperature,5.6,degC
+SN44640:0,2020-11-22T17:00:00.000Z,sum(precipitation_amount PT1H),0.4,mm
+SN44560:0,2020-11-22T17:00:00.000Z,wind_speed,9,m/s
+SN44640:0,2020-11-22T18:00:00.000Z,air_temperature,7,degC
+SN44640:0,2020-11-22T18:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T18:00:00.000Z,wind_speed,7,m/s
+SN44640:0,2020-11-22T19:00:00.000Z,air_temperature,6.1,degC
+SN44640:0,2020-11-22T19:00:00.000Z,sum(precipitation_amount PT1H),0.4,mm
+SN44560:0,2020-11-22T19:00:00.000Z,wind_speed,4.7,m/s
+SN44640:0,2020-11-22T20:00:00.000Z,air_temperature,5.9,degC
+SN44640:0,2020-11-22T20:00:00.000Z,sum(precipitation_amount PT1H),1.2,mm
+SN44560:0,2020-11-22T20:00:00.000Z,wind_speed,3.5,m/s
+SN44640:0,2020-11-22T21:00:00.000Z,air_temperature,7.2,degC
+SN44640:0,2020-11-22T21:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T21:00:00.000Z,wind_speed,8.7,m/s
+SN44640:0,2020-11-22T22:00:00.000Z,air_temperature,6.3,degC
+SN44640:0,2020-11-22T22:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T22:00:00.000Z,wind_speed,6.6,m/s
+SN44640:0,2020-11-22T23:00:00.000Z,air_temperature,6.5,degC
+SN44640:0,2020-11-22T23:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-11-22T23:00:00.000Z,wind_speed,9.1,m/s

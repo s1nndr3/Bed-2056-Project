@@ -1,0 +1,97 @@
+sourceId,referenceTime,elementId,value,unit
+SN44640:0,2020-10-15T00:00:00.000Z,air_temperature,4.7,degC
+SN44640:0,2020-10-15T00:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T00:00:00.000Z,wind_from_direction,144,degrees
+SN44560:0,2020-10-15T00:00:00.000Z,wind_speed,1.1,m/s
+SN44640:0,2020-10-15T01:00:00.000Z,air_temperature,6.4,degC
+SN44640:0,2020-10-15T01:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T01:00:00.000Z,wind_from_direction,62,degrees
+SN44560:0,2020-10-15T01:00:00.000Z,wind_speed,0.9,m/s
+SN44640:0,2020-10-15T02:00:00.000Z,air_temperature,5.3,degC
+SN44640:0,2020-10-15T02:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T02:00:00.000Z,wind_from_direction,119,degrees
+SN44560:0,2020-10-15T02:00:00.000Z,wind_speed,1.3,m/s
+SN44640:0,2020-10-15T03:00:00.000Z,air_temperature,5.3,degC
+SN44640:0,2020-10-15T03:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T03:00:00.000Z,wind_from_direction,127,degrees
+SN44560:0,2020-10-15T03:00:00.000Z,wind_speed,1.7,m/s
+SN44640:0,2020-10-15T04:00:00.000Z,air_temperature,5.2,degC
+SN44640:0,2020-10-15T04:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T04:00:00.000Z,wind_from_direction,136,degrees
+SN44560:0,2020-10-15T04:00:00.000Z,wind_speed,0.6,m/s
+SN44640:0,2020-10-15T05:00:00.000Z,air_temperature,5.7,degC
+SN44640:0,2020-10-15T05:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T05:00:00.000Z,wind_from_direction,123,degrees
+SN44560:0,2020-10-15T05:00:00.000Z,wind_speed,1,m/s
+SN44640:0,2020-10-15T06:00:00.000Z,air_temperature,5.2,degC
+SN44640:0,2020-10-15T06:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T06:00:00.000Z,wind_from_direction,141,degrees
+SN44560:0,2020-10-15T06:00:00.000Z,wind_speed,0.9,m/s
+SN44640:0,2020-10-15T07:00:00.000Z,air_temperature,5.8,degC
+SN44640:0,2020-10-15T07:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T07:00:00.000Z,wind_from_direction,115,degrees
+SN44560:0,2020-10-15T07:00:00.000Z,wind_speed,1.2,m/s
+SN44640:0,2020-10-15T08:00:00.000Z,air_temperature,7.8,degC
+SN44640:0,2020-10-15T08:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T08:00:00.000Z,wind_from_direction,160,degrees
+SN44560:0,2020-10-15T08:00:00.000Z,wind_speed,1,m/s
+SN44640:0,2020-10-15T09:00:00.000Z,air_temperature,9.3,degC
+SN44640:0,2020-10-15T09:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T09:00:00.000Z,wind_from_direction,140,degrees
+SN44560:0,2020-10-15T09:00:00.000Z,wind_speed,1,m/s
+SN44640:0,2020-10-15T10:00:00.000Z,air_temperature,10.6,degC
+SN44640:0,2020-10-15T10:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T10:00:00.000Z,wind_from_direction,117,degrees
+SN44560:0,2020-10-15T10:00:00.000Z,wind_speed,1.6,m/s
+SN44640:0,2020-10-15T11:00:00.000Z,air_temperature,11.4,degC
+SN44640:0,2020-10-15T11:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T11:00:00.000Z,wind_from_direction,331,degrees
+SN44560:0,2020-10-15T11:00:00.000Z,wind_speed,1.2,m/s
+SN44640:0,2020-10-15T12:00:00.000Z,air_temperature,12.2,degC
+SN44640:0,2020-10-15T12:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T12:00:00.000Z,wind_from_direction,13,degrees
+SN44560:0,2020-10-15T12:00:00.000Z,wind_speed,1.9,m/s
+SN44640:0,2020-10-15T13:00:00.000Z,air_temperature,12.1,degC
+SN44640:0,2020-10-15T13:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T13:00:00.000Z,wind_from_direction,309,degrees
+SN44560:0,2020-10-15T13:00:00.000Z,wind_speed,3,m/s
+SN44640:0,2020-10-15T14:00:00.000Z,air_temperature,11.9,degC
+SN44640:0,2020-10-15T14:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T14:00:00.000Z,wind_from_direction,321,degrees
+SN44560:0,2020-10-15T14:00:00.000Z,wind_speed,3.1,m/s
+SN44640:0,2020-10-15T15:00:00.000Z,air_temperature,11.4,degC
+SN44640:0,2020-10-15T15:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T15:00:00.000Z,wind_from_direction,355,degrees
+SN44560:0,2020-10-15T15:00:00.000Z,wind_speed,3.7,m/s
+SN44640:0,2020-10-15T16:00:00.000Z,air_temperature,9.7,degC
+SN44640:0,2020-10-15T16:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T16:00:00.000Z,wind_from_direction,351,degrees
+SN44560:0,2020-10-15T16:00:00.000Z,wind_speed,2.9,m/s
+SN44640:0,2020-10-15T17:00:00.000Z,air_temperature,7.9,degC
+SN44640:0,2020-10-15T17:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T17:00:00.000Z,wind_from_direction,5,degrees
+SN44560:0,2020-10-15T17:00:00.000Z,wind_speed,2.3,m/s
+SN44640:0,2020-10-15T18:00:00.000Z,air_temperature,7.8,degC
+SN44640:0,2020-10-15T18:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T18:00:00.000Z,wind_from_direction,61,degrees
+SN44560:0,2020-10-15T18:00:00.000Z,wind_speed,0.9,m/s
+SN44640:0,2020-10-15T19:00:00.000Z,air_temperature,7.6,degC
+SN44640:0,2020-10-15T19:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T19:00:00.000Z,wind_from_direction,10,degrees
+SN44560:0,2020-10-15T19:00:00.000Z,wind_speed,1.9,m/s
+SN44640:0,2020-10-15T20:00:00.000Z,air_temperature,7.4,degC
+SN44640:0,2020-10-15T20:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T20:00:00.000Z,wind_from_direction,85,degrees
+SN44560:0,2020-10-15T20:00:00.000Z,wind_speed,0.5,m/s
+SN44640:0,2020-10-15T21:00:00.000Z,air_temperature,7.2,degC
+SN44640:0,2020-10-15T21:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T21:00:00.000Z,wind_from_direction,38,degrees
+SN44560:0,2020-10-15T21:00:00.000Z,wind_speed,1.4,m/s
+SN44640:0,2020-10-15T22:00:00.000Z,air_temperature,6.4,degC
+SN44640:0,2020-10-15T22:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T22:00:00.000Z,wind_from_direction,27,degrees
+SN44560:0,2020-10-15T22:00:00.000Z,wind_speed,1.3,m/s
+SN44640:0,2020-10-15T23:00:00.000Z,air_temperature,6.5,degC
+SN44640:0,2020-10-15T23:00:00.000Z,sum(precipitation_amount PT1H),0,mm
+SN44560:0,2020-10-15T23:00:00.000Z,wind_from_direction,0,degrees
+SN44560:0,2020-10-15T23:00:00.000Z,wind_speed,0,m/s

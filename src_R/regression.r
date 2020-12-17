@@ -3,6 +3,7 @@ library(lubridate)
 library(plotly)
 library(dplyr)
 
+#Specific function to do linear regression for the main_df data frame
 make_regression <- function(data, name){
   Air_temp_fig <- na.omit(data) %>%  mutate(X = get(name)) %>%
     plot_ly(x = ~X) %>% 

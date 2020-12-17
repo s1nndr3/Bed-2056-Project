@@ -1,7 +1,7 @@
 ---
 title: "Do weather affect driving patterns?"
 author: "Sindre Sønvisen"
-date: "10/18/2020"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   html_document:
     df_print: paged
@@ -13,37 +13,34 @@ body {background-color: lightgray;}
 
 ```{r setup, include=FALSE, comment=NA, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("wrangle_new.r")
+source("wrangle.r")
 source("regression.r")
 library(leaflet) #Map
 ```
 
 # Introduction:
-<pre>
-  This project is about testing whether the weather has a say in the  
-  number of available parking spaces in Stavanger.
-</pre>
+This project is about testing whether the weather has a say in the number of available parking spaces in Stavanger. The idea is built on the premise that it seam to be harder to find parking space at a public parking lot when the weather is considered bad. But do the data and the impression tell the same story?
 
-# Data:
-<pre>
-  The weather data is collected from:
-    Norwegian klima service senter:
-      https://klimaservicesenter.no/observations/
-    Temperature and Precipitation from station id:SN44640.
-    Wind information from station id:SN44560. (consider changing...)
-  The parking data is collected from:
-    https://open.stavanger.kommune.no/dataset/stavanger-parkering/
-    
-  More information on each parking lot:
-    https://stavanger-parkering.no/parkering/p-hus/
-</pre>
+I have no personal connectio to Stavanger. Stavanger is manly chosen for its publicly available parking data. Thanks to my professor in Data Science Øystein Myrland at university of tromsø <https://uit.no/ansatte/person?p_document_id=41412> for the initial idea and inspiration for this project.
 
-# Hypothesis:
-<pre>
-  The available parking spaces goes down in bad weather.
-</pre>
+### Hypothesis:
+The available parking spaces goes down in bad weather.
 
+## Data:
+The weather data is collected from:  
+Norwegian klima service senter: <https://klimaservicesenter.no/observations/>  
+Temperature and Precipitation from station id:SN44640.  
+Wind information from station id:SN44560.
+
+The parking data is collected from: 
+Stavanger kommune: <https://open.stavanger.kommune.no/dataset/stavanger-parkering/>
+
+More information on each parking lot: <https://stavanger-parkering.no/parkering/p-hus/>
+
+# Presentation:
 ## Map
+Interactive map using "leaflet" library:
+
 ```{r map, comment=NA, message=FALSE, echo=FALSE, warning=FALSE}
 map3 <- leaflet() %>%
 addTiles() #%>%  # Add default OpenStreetMap map tiles
@@ -53,6 +50,8 @@ for(n in 1:n_places){
 }
 map3
 ```
+
+Feel free to inspect the map, click on the markers to see the name for the parking lot.
 
 ## Correlation
 A schema of correlation between the parking lots and the different weather aspects. We use data every day between 08:00 and 18:00.
@@ -90,7 +89,7 @@ df_temp2 %>% make_regression(., "Precipitation mm")
 df_temp2 %>%  make_regression(., "wind_speed m/s")
 ```
 
-As we can see the data for the air temperature do seam to go the oppose direction from what I expected. The available parking seam to go down in higher temperature (exept for Forum). For Precipitation and wind speed thay do not seam to follow tha same trend and som of them goes up and some goes down in higer/lower Precipitation and wind speed. This can chnage as time goes on and we collect more data. The weather unfortunately for this project seam to have bean fairly stable. To inspect even deeper a time plot for both the parking data and weather is plotted bellow.
+As of 17.12.20 we can see the data for the air temperature do seam to go the oppose direction from what I expected. The available parking seam to go down in higher temperature (except for Forum). Precipitation and wind speed do not seam to follow the same trend and some of them goes up and some goes down in higher/lower precipitation and wind speed. This can change as time goes on and we collect more data. The weather unfortunately for this project seam to have bean fairly stable. To inspect even deeper a time plot for both the parking data and weather is plotted bellow.
 
 ## Time graphs
 ```{r Time_p, comment=NA, message=FALSE, echo=FALSE, warning=FALSE}
@@ -163,16 +162,35 @@ df_weather %>% filter(Element != "wind_direction degrees") %>% ungroup() %>%
 
 ```
 
+Note that the parking data for parking lot Forum and parketten have some anomolys
+
 # Methods used:
+The source code can be found at: <https://github.com/sso149/Bed-2056-Project>
+
 ## Collecting data
-I chose to use python 3 for the data collection because i was most familiar with it at the time when i started this project. Python is also a good language to use in this scenario since we are collecting from the web and errors can occur. The exception clause in python make it easy to collect these errors and make sure we do not have a crash if/when a unexpected error occurs.
+I chose to use python 3 for the data collection because i was most familiar with it at the time when i started this project. Python is also a good language to use in this scenario since we are collecting from the web and errors can occur. The exception clause in python make it easy to collect these errors and make sure we do not have a crash if/when a unexpected error occurs. (See code inside src_python)
 
-### Python code:
 #### sceduler:
-I made my own scheduler instead of using soothing lake cron in linux. This was manly because i was personally interested and i culd easely used cron job instead since it runs on a linux server, The only advantage is that no alteration is required to run in an other os.
 
-#### Web scrapers:
+I made my own scheduler in python3 instead of using soothing like cron in linux. This was manly because i was personally interested and i could easily used cron job instead since it runs on a linux server, The only advantage is that no alteration is required to run in another os. The scheduler is made to not drift regardless of the time it uses to finish one task. After one task is completed it calculates the amount it need to sleep to execute exactly at the right time instead of just sleeping a fixed time witch would cause a drift over time. For example for the parking data this means it collect the data exactly at minute 0-4-8-12-16-20-24-28-32-36-40-44-48-52-56 each hour.
+
+#### Web scraper:
+
+The scraper is also written in python3 the scraper for parking and weather is separated in classes. Each of the classes have the state/information and functions to request, partition and then store the data. To start the scraper a simple start dunction is mase (see scraper.py) this sets up the schedulers and scrapers for both parking data and weather data and start them in separate threads. The parking data is collected every 4 minutes, and the weather is collected every morning at 05:00, all the data for the previous day is collected and contains the acctual recorded weather each hour of the day.
+
+![Web scraper](../images/terminal_example.png)
 
 ## Data wrangling using r
+Since the web scraper just collects and insert the data in to files with no further test and corrections the data is far from perfect. There is are some missing values, duplicate rows and for two of the parking lots just completely wrong data sometimes. (see code inside src_R/wrangle.r)
 
-## Data presentation r-markdown/plotly
+The libraries used for the data preparation is manly: tidyverse and lubridate.
+
+#### Preparation steps:
+* Firstly i need to read al of the files using "map_dfr" and select the interesting fields.  
+* Translate/change the names of the fields, convert Latitude and Longitude to numeric and extract its own data frame.  
+* Format the data and time from the parking data frame in to one DataTime, and also set date to datetime for the weather data frame.  
+* In the parking df i need to remove all the values equal to 0 (illigal/broken) and set all the values "Fullt" to 0 and then convert to numeric.  
+* Modify the elements names in weather df.  
+* Remove duplicate rows from parking df and calculate the average for each hour.  
+* Then lastly join the two data frames in to a main data frame to use in the plotting/analyze.
+
