@@ -2,7 +2,7 @@ __pycache__
 .Rproj.user
 .RData
 .Rhistory
-src_python/temp_data/
+src_python/temp_data/*.csv
 venv
 data_old/
 data.zip
