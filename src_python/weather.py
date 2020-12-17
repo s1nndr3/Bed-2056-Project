@@ -15,6 +15,7 @@ requests.packages.urllib3.disable_warnings()
 """
 	- A weather scraper using a sceduler.
 	- Do not have it`s own sceduler.
+	- Note: Not a generic class. special use.
 """
 class Weather_scraper():
 	def __init__(self, file_name = "weather", data_dir = "."):
@@ -123,11 +124,13 @@ class Weather_scraper():
 		self.weather_close_file()
 
 
+# Simple unit test. WIP.
 def unit_test():
 	scedule = (None, None, None, None, None, None)
 	w = Weather_scraper(scedule, "weather_unit-test")
 	w.weather_store()
 
 
+# Call uit test if called directly.
 if __name__ == "__main__":
 	unit_test()

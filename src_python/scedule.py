@@ -7,6 +7,14 @@ from datetime import date, datetime, timedelta
 import time
 import sys
 
+""" Scheduler class to call functio on a Schedule.
+	- func: the function to call
+	- year, month, day, hour, minut, second: Time when to execute.
+		- If one is just one number example 4 this mean every fourt instance. 
+		- If one is list esample (4,) absolut time.
+	- call function start to start the scedule.
+	- Exeptions not catch in the provided funcon will be picked and the function is called next time.
+"""
 class Schedule():
 	def __init__(self, func, year = None, month = None, day = None, hour = None, minut = None, second = None):
 		self.start_date = date.today().strftime("%d-%m-%Y") 	#date when started
@@ -22,6 +30,7 @@ class Schedule():
 
 		self.all = ((self.second, "second", 60), (self.minut, "minute", 60), (self.hour, "hour", 24), (self.day, "day", 32), (self.month, "month", 13), (self.year, "year", 5000))
 
+	# Return number of seconds to sleep until next time.
 	def time_sleep(self):
 		t = datetime(*self.next_time())
 		return (t - datetime.now()).total_seconds()
@@ -35,6 +44,7 @@ class Schedule():
 		#else return first next sucle
 		return time_tuple[0], False
 
+	# Find the next time it shuld be executed
 	def next_time(self):
 		t = datetime(*self.last_time())
 
@@ -55,6 +65,7 @@ class Schedule():
 
 		return (t.year, t.month, t.day, t.hour, t.minute, t.second)
 
+	# Find the previous time when this shuld have executed. 
 	def last_time(self):
 		t = datetime.now()
 		return (t.year if isinstance(self.year, tuple) else t.year - (t.year % self.year), 
@@ -64,6 +75,7 @@ class Schedule():
 		t.minute if isinstance(self.minut, tuple) else t.minute - (t.minute % self.minut), 
 		t.second if isinstance(self.second, tuple) else t.second - (t.second % self.second))
 
+	# Start function
 	def start(self):
 		if (not self.second and not self.minut and not self.hour):
 			raise AssertionError("Execution schedule not set!!!")
@@ -72,9 +84,11 @@ class Schedule():
 
 		self.loop()
 
+	# WIP.
 	def stop(self):
 		pass
 
+	# This is the function where we sleep and call the function after.
 	def schedule(self):
 		time.sleep(self.time_sleep())
 		try:
@@ -84,10 +98,12 @@ class Schedule():
 			
 		return True
 
+	# Main loop. WIP (add pause and stop functionality)
 	def loop(self):
 		while(self.schedule()):
 			print(f"Function \"{self.func.__name__}\" done: {datetime.now()}, next time: {self.next_time()}")
 
+# Simple unit testing WIP.
 class unit_test():
 	def __init__(self):
 		scedule = (None, None, None, None, (3,6,9,13,16,19,22,28,36,40,44,52,59), (3,8,20, 34, 42, 59))
@@ -98,6 +114,6 @@ class unit_test():
 		print(f"test: {datetime.now()}, next time = {self.s_test.next_time()}")
 		return
 
-
+# If called directly run unit test.
 if __name__ == "__main__":
 	unit_test()
