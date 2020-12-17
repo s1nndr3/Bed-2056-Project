@@ -37,6 +37,8 @@ Stavanger kommune: <https://open.stavanger.kommune.no/dataset/stavanger-parkerin
 
 More information on each parking lot: <https://stavanger-parkering.no/parkering/p-hus/>
 
+Download updated [data](https://aickro.net/data.zip).
+
 # Presentation:
 ## Map
 Interactive map using "leaflet" library:
