@@ -4,6 +4,5 @@ __pycache__
 .Rhistory
 src_python/temp_data/
 venv
-parking_vs_weather.html
 data_old/
 data.zip

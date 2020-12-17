@@ -19,9 +19,9 @@ library(leaflet) #Map
 ```
 
 # Introduction:
-This project is about testing whether the weather has a say in the number of available parking spaces in Stavanger. The idea is built on the premise that it seam to be harder to find parking space at a public parking lot when the weather is considered bad. But do the data and the impression tell the same story?
+This project is about testing whether the weather has a say in the number of available parking spaces in Stavanger Norway. The idea is built on the premise that it seam to be harder to find parking space at a public parking lot when the weather is considered bad. But do the data and the impression tell the same story?
 
-I have no personal connectio to Stavanger. Stavanger is manly chosen for its publicly available parking data. Thanks to my professor in Data Science Øystein Myrland at university of tromsø <https://uit.no/ansatte/person?p_document_id=41412> for the initial idea and inspiration for this project.
+I have no personal connection to Stavanger. Stavanger is manly chosen for its publicly available parking data. Thanks to my professor in Data Science Øystein Myrland at university of tromsø <https://uit.no/ansatte/person?p_document_id=41412> for the initial idea and inspiration for this project.
 
 ### Hypothesis:
 The available parking spaces goes down in bad weather.
