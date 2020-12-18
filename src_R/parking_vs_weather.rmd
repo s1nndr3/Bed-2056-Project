@@ -243,3 +243,5 @@ The libraries used for the data preparation is manly: tidyverse and lubridate.
 
 Lastly this web page is written using RMarkdown and the interactive plots is made using the plotly library (included through wrangle.r). The atomized web page for this site is self hosted on a "work in progress" backend. Let me know if you find/see any problems with ether the data or the web page itself.
 
+<iframe width="1028" height="480" src="https://www.youtube.com/embed/8sCbR7JX4r8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
