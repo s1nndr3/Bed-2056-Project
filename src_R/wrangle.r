@@ -1,4 +1,17 @@
-#Code for the data wrangling.
+#Code for the data wrangling of parking data and weather data
+#contain relative paths so call from within src_R.
+#Data must be placed in ../data and separated in parking and weather.
+# /src_R (this directory)
+#   /wrangle.r (this file)
+#   ...
+# /Data
+#   /parking (only .csv files)
+#     *.csv
+#     ...
+#   /weather/ (only .csv files)
+#     *.csv
+#    ...
+# ...
 
 library(tidyverse)
 library(lubridate)

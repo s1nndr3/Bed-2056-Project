@@ -7,13 +7,13 @@ from datetime import date, datetime, timedelta
 import time
 import sys
 
-""" Scheduler class to call functio on a Schedule.
+""" Scheduler class to call a function on a Schedule.
 	- func: the function to call
 	- year, month, day, hour, minut, second: Time when to execute.
 		- If one is just one number example 4 this mean every fourt instance. 
 		- If one is list esample (4,) absolut time.
-	- call function start to start the scedule.
-	- Exeptions not catch in the provided funcon will be picked and the function is called next time.
+	- call function "start" to start the scedule.
+	- Exeptions not catch in the provided funcon will be picked up and discarded, the function is called next time.
 """
 class Schedule():
 	def __init__(self, func, year = None, month = None, day = None, hour = None, minut = None, second = None):

@@ -10,14 +10,10 @@ import sys
 import os
 
 """
-	- Web scraper
 	- Only for use with json responce
 	- Requierd fealds:
 		- url: The url to take a get request from
 		- fields: tupe of the fealds in each json entry
-		- time: tupe of the scedule, (Year, Month, Day, Hour, Minute, Second)
-			- example1: (None, None, None, 5, None) will run do every 5 minute
-	- Start with: self.schedule.start()
 """
 class Parking_scraper():
 	def __init__(self, url, fields, temp_dir = ".", perm_dir = ".", prefix = "parking"):
